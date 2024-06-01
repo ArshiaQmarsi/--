@@ -1,0 +1,52 @@
+<form [formGroup]="loginForm"
+      class="flex flex-col content-center justify-center gap-3 flex-wrap">
+    <mat-icon svgIcon="Kdz"
+         class="!h-40 !w-40 mx-auto"
+         alt="کانون">
+    </mat-icon>
+    <mat-form-field>
+        <mat-label>کد ملی</mat-label>
+        <input type="tel"
+               formControlName="nationalCode"
+               matInput>
+        <mat-error>
+            {{validatorCoreService.GetMessage(loginForm.get('nationalCode'))}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="password"
+               matInput
+               formControlName="password"
+               placeholder="کلمه عبور">
+        <mat-error>{{validatorCoreService.GetMessage(loginForm.get('password'))}}
+        </mat-error>
+    </mat-form-field>
+    <re-captcha size="invisible"
+                #captchaRef="reCaptcha"
+                (resolved)="onSubmit()"
+                formControlName="captcha"></re-captcha>
+    <div fxLayout="column"
+         fxLayoutGap="20px">
+        <button mat-raised-button
+                [loading]="isLoading"
+                color="primary"
+                (click)="captchaRef.execute()"
+                [disabled]="loginForm.invalid"
+                type="button">
+            ورود
+        </button>
+        <button mat-raised-button
+                [disabled]="isLoading"
+                type="button"
+                routerLink="forget">
+            فراموشی رمز عبور
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-raised-button
+                [disabled]="isLoading"
+                type="button"
+                color="accent"
+                routerLink="register">
+            ثبت نام در اپلیکشن کانون دانشجویان زرتشتی
+        </button>
+    </div>
+</form>

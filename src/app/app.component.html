@@ -1,0 +1,16 @@
+<kdz-tool-bar>
+
+    <main fxFlex="100"
+          fxFlex.gt-md="70vw">
+        <router-outlet> </router-outlet>
+        <br><br><br>
+        <kdz-offline-connection></kdz-offline-connection>
+        <footer class="text-center">
+            <span>
+                تمام حقوق این سامانه برای کانون دانشجویان زرتشتی می باشد.
+            </span>
+            <div>نسخه : {{githash}}</div>
+        </footer>
+    </main>
+</kdz-tool-bar>
+<ngx-loading-bar [color]="'#000'"></ngx-loading-bar>

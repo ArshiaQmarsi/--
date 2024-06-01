@@ -1,0 +1,97 @@
+<form [formGroup]="personalForm"
+      fxLayout="column"
+      (submit)="onSubmit()"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px">
+    <mat-form-field>
+        <mat-label>
+            تعداد اعضای خانواده
+        </mat-label>
+        <input matInput
+               formControlName="numberOfFamilyMembers"
+               type="number" />
+        <mat-error>
+            {{validatorCoreService.GetMessage(personalForm.controls.numberOfFamilyMembers)}}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            تلفن همراه پدر
+        </mat-label>
+        <input matInput
+               formControlName="fatherphone"
+               type="tel" />
+        <mat-error>
+            {{validatorCoreService.GetMessage(personalForm.controls.fatherphone)}}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            تلفن همراه مادر
+        </mat-label>
+        <input matInput
+               formControlName="motherphone"
+               type="tel" />
+        <mat-error>
+            {{validatorCoreService.GetMessage(personalForm.controls.motherphone)}}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>روش آشنایی شما با همایش مانتره چگونه بوده است؟</mat-label>
+        <mat-select formControlName="acquaintance"
+                    multiple>
+            <mat-option *ngFor="let acquaintance of acquaintanceModel"
+                        [value]="acquaintance.value">{{acquaintance.label}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <label id="example-radio-group-label">آیا تا به حال در مانتره شرکت‌ کرده‌اید؟</label>
+    <mat-radio-group aria-labelledby="example-radio-group-label"
+                     fxLayoutGap="10px"
+                     formControlName="isParticipating">
+        <mat-radio-button [value]="true">بله</mat-radio-button>
+        <mat-radio-button [value]="false">خیر</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field>
+        <mat-label>
+            هدف شما از شرکت در این دوره از همایش مانتره چیست؟
+        </mat-label>
+        <input formControlName="goalForMantrak"
+               matInput />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            چه پیشنهادهایی برای اجرای بخش مانترک امسال دارید؟
+        </mat-label>
+        <input formControlName="suggestions"
+               matInput />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>به کدام یک از زمینه‌های زیر علاقه‌مندید؟</mat-label>
+        <mat-select formControlName="personLinkedFiled"
+                    multiple>
+            <mat-option *ngFor="let topping of personLinkedFiled"
+                        [value]="topping.value">{{topping.label}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>به شرکت در چه کلاس‌هایی در مانترک امسال علاقه‌مندید؟</mat-label>
+        <input matInput
+               formControlName="likedClass" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>آیا علاقه‌مند به شرکت در بخش اوستاخوانی هستید؟(کدام بخش)</mat-label>
+        <mat-select formControlName="avestaKhani">
+            <mat-option *ngFor="let topping of isLikeAvestaKhani"
+                        [value]="topping.value">{{topping.label}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button
+            [disabled]="personalForm.invalid"
+            color="primary"
+            class="button-style">ثبت</button>
+
+            <app-back-button class="button-style"></app-back-button>
+</form>

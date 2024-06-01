@@ -1,0 +1,124 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material'as mat;
+@import '~ngx-lightbox/lightbox.css';
+@import './app/core/scss/bootstrap.scss';
+@import './app/core/scss/spacing.scss';
+@import './app/core/scss/float.scss';
+@import './app/core/scss/loading-spinner.scss';
+// @import './app/core/scss/material-icons.scss';
+// @import './app/core/scss/roboto.scss';
+@tailwind base;
+@tailwind utilities;
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Vazirmatn UI FD NL', Roboto, "Helvetica Neue", sans-serif;
+    overflow-y: hidden;
+    --mdc-tab-indicator-active-indicator-color: #4BDECD;
+}
+
+// @include mat.all-component-typographies($custom-typography);
+@include mat.core();
+$custom-typography: mat.define-typography-config($font-family: 'Vazirmatn UI FD NL');
+$dark-primary: mat.define-palette(mat.$teal-palette, 700);
+$dark-accent: mat.define-palette(mat.$purple-palette, A700);
+$dark-theme: mat.define-dark-theme((color: (primary: $dark-primary,
+            accent: $dark-accent,
+        ), typography: $custom-typography,
+        density: 0, ));
+@include mat.all-component-themes($dark-theme);
+
+@media (prefers-color-scheme: light) {
+    $light-primary: mat.define-palette(mat.$light-blue-palette, 500);
+    $light-accent: mat.define-palette(mat.$amber-palette, 400);
+    $light-theme: mat.define-light-theme((color: (primary: $light-primary,
+                    accent: $light-accent,
+                )));
+
+    @include mat.all-component-themes($light-theme);
+
+    body {
+        --mdc-tab-indicator-active-indicator-color: #61C4F2;
+    }
+    
+    .home-page-background {
+        background-color: rgb(255, 255, 255) !important;
+    }
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.el-center {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.mat-loading .mat-mdc-progress-spinner {
+    position: absolute;
+    top: calc(29% - 10px);
+    left: calc(50% - 10px);
+}
+
+.text-warn {
+    color: red;
+}
+
+.pulse {
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+    cursor: pointer;
+}
+
+.pulse:disabled {
+    cursor: not-allowed;
+}
+
+.pulse:hover:not([disabled]),
+.pulse:focus:not([disabled]) {
+    animation: pulse 1s;
+    box-shadow: 0 0 0 2em rgba(#fff, 0);
+
+    color: #a85f84;
+    transition: 0.25s;
+
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 adjust-hue(#863e62, 45deg);
+    }
+}
+
+.link-active {
+    background-color: map-get(mat.define-palette(mat.$purple-palette), A700) !important;
+
+    @media (prefers-color-scheme: light) {
+        background-color: map-get(mat.define-palette(mat.$amber-palette), 400) !important;
+    }
+}
+
+.home-page-background {
+    height: 60vh;
+    background-color: rgb(27, 27, 27);
+}
+
+.mdc-tab--active {
+    .mdc-tab__text-label {
+        color: #DEBC35 !important;
+        @media (prefers-color-scheme:light){
+            color: #F2EB49 !important;
+        }
+    }
+}

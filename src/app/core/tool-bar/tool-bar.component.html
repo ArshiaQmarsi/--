@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button
+            *ngIf="authService.isAuthenticated && !mobileQuery.matches"
+            (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span [innerText]="name"></span>
+    <span class="spacer"></span>
+    <button mat-icon-button *ngIf="authService.isAuthenticated" routerLink="/Settings" aria-label="مشخصات کاربری"><mat-icon>account_circle </mat-icon></button>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #snav
+                 [opened]="!mobileQuery.matches && authService.isAuthenticated"
+                 [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 fixedTopGap="56"
+                 [fixedInViewport]="mobileQuery.matches">
+        <app-navigation-list></app-navigation-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <ng-content></ng-content>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<app-navigation-bar *ngIf="mobileQuery.matches && authService.isAuthenticated"></app-navigation-bar>

@@ -1,0 +1,32 @@
+<form [formGroup]="projectbaseForm"
+      fxLayout="column"
+      (submit)="onSubmit()"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px">
+    <mat-form-field class="large">
+        <mat-label>اسامی استاد</mat-label>
+        <mat-select formControlName="subject">
+            <mat-option *ngFor="let subject of (subjects|async)?.entity"
+                        [value]="subject.id">
+                {{subject.data}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>
+            کد ملی یارتون
+        </mat-label>
+        <input matInput
+               formControlName="iiarNationalCode"
+               (blur)="onblurInput()"
+               type="tel">
+    </mat-form-field>
+    <app-ordoo-hamyesh-poll formControlName="ordooHamaysh" [ageRange]="ageRange"></app-ordoo-hamyesh-poll>
+
+    <button color="primary"
+            [disabled]="projectbaseForm.invalid"
+            mat-flat-button
+            class="button-style"> ثبت اطلاعات</button>
+
+    <app-back-button class="button-style"></app-back-button>
+</form>

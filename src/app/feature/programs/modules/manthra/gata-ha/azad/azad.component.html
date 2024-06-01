@@ -1,0 +1,22 @@
+<form [formGroup]="azadForm"
+      fxLayout="column"
+      (submit)="onSubmit()"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px">
+
+    <mat-form-field>
+        <mat-label>
+            کد ملی یار
+        </mat-label>
+        <input matInput
+               formControlName="iiarNationalCodeAsli0"
+               (blur)="onblurInput(azadForm.controls.iiarNationalCodeAsli0)"
+               type="tel">
+    </mat-form-field>
+
+    <app-ordoo-hamyesh-poll [ageRange]="ageRange" formControlName="ordooHamaysh"></app-ordoo-hamyesh-poll>
+    <button color="primary"
+            mat-flat-button
+            class="button-style"> ثبت اطلاعات</button>
+    <app-back-button class="button-style"></app-back-button>
+</form>

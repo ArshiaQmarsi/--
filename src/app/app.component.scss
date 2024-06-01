@@ -1,0 +1,13 @@
+main {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 3vh;
+    height: 91vh;
+}
+
+@media(min-width:960px) {
+    main {
+        margin-left: 0.5vw;
+        margin-right: 0.5vw;
+    }
+}

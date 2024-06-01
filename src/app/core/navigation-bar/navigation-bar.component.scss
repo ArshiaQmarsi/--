@@ -1,0 +1,13 @@
+nav{
+    position: absolute;
+    bottom: 0;
+    right:  0;
+    left: 0;
+}
+span{
+    margin-right: 5px;
+    font-size: smaller;
+}
+::ng-deep.mat-mdc-tab-link {
+    display: block !important;
+}

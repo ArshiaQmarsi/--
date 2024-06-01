@@ -1,0 +1,45 @@
+<form [formGroup]="avestaKhaniForm"
+      fxLayout="column"
+      (submit)="onSubmit()"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px">
+    <mat-form-field>
+        <mat-label>دسته بندی</mat-label>
+        <mat-select multiple
+        (selectionChange)="onSelectChange($event)"
+                    formControlName="category">
+            <mat-option [value]="category.value"
+                        *ngFor="let category of avestaKhaniCategories">
+                {{category.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="avestaKhaniForm.value.category?.includes(0)">
+        <mat-label>رده</mat-label>
+        <mat-select formControlName="rade">
+            <mat-option value="0">اهنودگات</mat-option>
+            <mat-option value="1">اشتود-سپنتمدگات</mat-option>
+            <mat-option value="2">کل گاتا</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="avestaKhaniForm.value.category?.includes(1)">
+        <mat-label>شماره گروه از بر خوانی انفرادی</mat-label>
+        <input formControlName="groupNumberSingle" type="number" matInput>
+    </mat-form-field>
+    <mat-form-field *ngIf="avestaKhaniForm.value.category?.includes(2)">
+        <mat-label>کد ملی یار</mat-label>
+        <input formControlName="iiarNationalCodeAsli0" (blur)="onblurInput(avestaKhaniForm.controls.iiarNationalCodeAsli0)" matInput>
+    </mat-form-field>
+    
+    <mat-form-field *ngIf="avestaKhaniForm.value.category?.includes(2)">
+        <mat-label>شماره گروه از بر خوانی گروهی</mat-label>
+        <input formControlName="groupNumber" type="number" matInput>
+    </mat-form-field>
+    <app-ordoo-hamyesh-poll [ageRange]="ageRange"
+                            formControlName="ordooHamaysh"></app-ordoo-hamyesh-poll>
+    <button color="primary"
+            [disabled]="avestaKhaniForm.invalid"
+            mat-flat-button
+            class="button-style"> ثبت اطلاعات</button>
+    <app-back-button class="button-style"></app-back-button>
+</form>
